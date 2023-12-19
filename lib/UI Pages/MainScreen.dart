@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'AmericanNewsUI.dart';
+import 'CricketNewsUI.dart';
 import 'FootballIntro.dart';
 import 'FootballNewsPage.dart';
-import 'FootballNewsUI.dart';
+import 'FootballNewsApiManagerI.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -23,63 +25,75 @@ class _MainScreenState extends State<MainScreen> {
         ),),
         backgroundColor: Colors.blue,
       ),
-      body: Column(
-            
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:[ GestureDetector(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => FootballIntro()),
-                      );                },
+
+      body: CustomScrollView(
+        slivers: [
+          SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 8.0,
+
+            ),
+            delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    navigateToPage(context, index);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                     child: Container(
                       color: Colors.blue,
-                        height: 200,
-                        width: 150,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children:[
-                          Text('Football Scores',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold
-                          ),)
-                        ]))
-                ),
-                  GestureDetector(
-                      onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => NewsUI()),
-                        );                },
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-
-                      child: Container(
-                          // padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                            color: Colors.blue,
-                            height: 200,
-                            width: 150,
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children:[
-                                  Text('Football News',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold
-                                    ),)
-                                ])),
-                      )
-                  )]
-              )
-            ],
+                      child: Center(
+                        child: Text(
+                          getPageTitle(index),
+                          style: TextStyle(color: Colors.white,
+                          fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              childCount: 4,
+            ),
           ),
+        ],
+      ),
     );
+  }
+
+  void navigateToPage(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        Navigator.push(context, MaterialPageRoute(builder: (context) => FootballIntro()));
+        break;
+      case 1:
+        Navigator.push(context, MaterialPageRoute(builder: (context) => NewsUI()));
+        break;
+      case 2:
+        Navigator.push(context, MaterialPageRoute(builder: (context) => AmericanNewsUI()));
+        break;
+      case 3:
+        Navigator.push(context, MaterialPageRoute(builder: (context) => CricketNewsUI()));
+        break;
+    }
+  }
+
+  String getPageTitle(int index) {
+    switch (index) {
+      case 0:
+        return 'Football Scores';
+      case 1:
+        return 'European Football News';
+      case 2:
+        return 'American Sports News';
+      case 3:
+        return 'Cricket News';
+      default:
+        return '';
+    }
   }
 }
