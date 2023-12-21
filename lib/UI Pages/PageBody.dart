@@ -7,11 +7,11 @@ import '../SoccerModel.dart';
 Widget PageBody(List<SoccerMatch> allmatches) {//changes made
   return Column(
       children: [
-        const Text("MATCHES",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-          ),),
+        // const Text("",
+        //   style: TextStyle(
+        //     color: Colors.black,
+        //     fontSize: 20,
+        //   ),),
         Expanded(
           child: ListView.builder(
             itemCount: allmatches.length,

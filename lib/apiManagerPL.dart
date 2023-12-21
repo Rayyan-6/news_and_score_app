@@ -7,6 +7,10 @@ import 'package:sem_project_new/SoccerModel.dart';
 
 class SoccerApiPL {
   final String apiUrl = 'https://v3.football.api-sports.io/fixtures?season=2023&league=39';
+  // final String apiUrl = 'https://v3.football.api-sports.io/fixtures?season=2023&league=39';
+  // final String apiUrl = 'https://v3.football.api-sports.io/fixtures/headtohead?h2h=33-34';
+  // final String apiUrl = 'https://v3.football.api-sports.io/players/topscorers?season=2018&league=61';
+  // final String apiUrl = 'https://v3.football.api-sports.io/standings?league=39&season=2023';
 
 
   //headers
@@ -25,13 +29,23 @@ class SoccerApiPL {
         List<dynamic> matchesList = body['response'];
         debugPrint("->_> ${body['response']}");
         // print('Api service ${body} and ${matchesList}'); // to debug
-        // print('Api service $body '); // to debug
+        print('Api service $body '); // to debug
         List<SoccerMatch> matches = matchesList
             .map((dynamic item) => SoccerMatch.fromJson(item))
             .toList();
+        //Added
+        List<SoccerMatch> completedMatches = matchesList
+            .where((match) =>
+        match['fixture']['status']['short'] == 'FT' ||
+            match['fixture']['status']['short'] == 'HT')
+            .map((dynamic item) => SoccerMatch.fromJson(item))
+            .toList();
+
+
+        completedMatches=completedMatches.reversed.toList();
         print('macthes <<<< $matches >>>> '); // to debug
 
-        return matches;
+        return completedMatches;
       } else {
         throw Exception(
             'Failed to load matches. Status code: ->-> ${res.statusCode}');

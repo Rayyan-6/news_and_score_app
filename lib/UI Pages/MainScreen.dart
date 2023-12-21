@@ -4,7 +4,7 @@ import 'AmericanNewsUI.dart';
 import 'CricketNewsUI.dart';
 import 'FootballIntro.dart';
 import 'FootballNewsPage.dart';
-import 'FootballNewsApiManagerI.dart';
+import 'FootballNewsApiManager.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

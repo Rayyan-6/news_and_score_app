@@ -27,13 +27,23 @@ class SoccerApiUCL {
         List<dynamic> matchesList = body['response'];
         debugPrint("->_> ${body['response']}");
         // print('Api service ${body} and ${matchesList}'); // to debug
-        // print('Api service $body '); // to debug
+        print('Api service $body '); // to debug
         List<SoccerMatch> matches = matchesList
             .map((dynamic item) => SoccerMatch.fromJson(item))
             .toList();
+        //Added
+        List<SoccerMatch> completedMatches = matchesList
+            .where((match) =>
+        match['fixture']['status']['short'] == 'FT' ||
+            match['fixture']['status']['short'] == 'HT')
+            .map((dynamic item) => SoccerMatch.fromJson(item))
+            .toList();
+
+
+        completedMatches=completedMatches.reversed.toList();
         print('macthes <<<< $matches >>>> '); // to debug
 
-        return matches;
+        return completedMatches;
       } else {
         throw Exception(
             'Failed to load matches. Status code: ->-> ${res.statusCode}');
