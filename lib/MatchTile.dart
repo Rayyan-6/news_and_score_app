@@ -12,23 +12,40 @@ Widget MatchTile(SoccerMatch match) {
       color: Colors.blueGrey[800],
       borderRadius: BorderRadius.circular(25.0)
     ),
-    height: 69,
+    height: 75,
     width: 100,
     margin: const EdgeInsets.symmetric(vertical: 12,horizontal: 16),
     child: Column(
       children:[
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-                Text(
-            formattedDate,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-              ),
+            SizedBox(),
+
+                        Text(
+                                  formattedDate,
+                                    style: TextStyle(
+                                           color: Colors.white,
+                                           fontSize: 12,
+                                           fontWeight: FontWeight.bold,
+                                    ),
+                                           ),
+
+
+// Spacer(),
+
+             Text(
+              
+                  " ${match.status.elapsed}'",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+
+
           ],
         ),
         Row(
@@ -48,15 +65,11 @@ Widget MatchTile(SoccerMatch match) {
           match.home.name,
           textAlign: TextAlign.center,
           style: const TextStyle(color: Colors.white,
-              fontSize: 16,
+              fontSize: 13,
               fontWeight: FontWeight.bold
           ),
         )),
         Image.network(match.home.logoUrl, width: 36),
-
-
-
-
 
             Flexible(
               child: Expanded(
@@ -72,15 +85,13 @@ Widget MatchTile(SoccerMatch match) {
                   ),
             ),
 
-
-
         Image.network(match.away.logoUrl, width: 36),
         Expanded(
             child: Text(
           match.away.name,
           textAlign: TextAlign.center,
           style: const TextStyle(color: Colors.white,
-              fontSize: 16,
+              fontSize: 13,
               fontWeight: FontWeight.bold
           ),
         )),

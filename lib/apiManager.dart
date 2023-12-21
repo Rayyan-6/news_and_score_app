@@ -37,7 +37,6 @@ class SoccerApi {
             'Failed to load matches. Status code: ->-> ${res.statusCode}');
       }
     } catch (e) {
-      // You can log the exception or handle it as needed
       print('Error is ->-> $e <-<-');
       throw Exception('Failed to load matches. <<<< Error: $e >>>>');
     }

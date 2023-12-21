@@ -1,17 +1,32 @@
+
 import 'package:flutter/material.dart';
 import 'package:sem_project_new/Goalstat.dart';
 import 'package:sem_project_new/MatchTile.dart';
 import 'package:sem_project_new/TeamStat.dart';
 import '../SoccerModel.dart';
+import 'StandingsTable.dart';
 
-Widget PageBody(List<SoccerMatch> allmatches) {//changes made
+Widget PageBody(BuildContext context,List<SoccerMatch> allmatches,int leagueId) {//changes made
   return Column(
       children: [
-        // const Text("",
+        // const Text("matches",
         //   style: TextStyle(
         //     color: Colors.black,
         //     fontSize: 20,
         //   ),),
+        ElevatedButton(
+
+            onPressed: (){
+              Navigator.push(
+                context,
+                // MaterialPageRoute(builder: (context) => PageScreen(text, color)),
+                MaterialPageRoute(builder: (context) => StandingsTable(leagueId: leagueId)),
+              );
+
+        },
+            child: Text("Standings")
+
+        ),
         Expanded(
           child: ListView.builder(
             itemCount: allmatches.length,
