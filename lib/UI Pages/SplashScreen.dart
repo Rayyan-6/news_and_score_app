@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Delayed navigation to the main screen after 5 seconds
     Timer(
       Duration(seconds: 10),
-          () => Navigator.pushReplacement( 
+          () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => MainScreen_2()),
       ),
@@ -27,22 +27,37 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: Center(
-      //   child: FlutterLogo(
-      //     size: 200.0,
-      //   ),
-      // ),
-      
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children:[ Image.asset("assets/splashgif.gif"),
-      Text("Welcome To Sports App",
-      style: TextStyle(fontSize: 20,
-      fontWeight: FontWeight.bold
+      body: Stack(
+        children: [
+          // Background Image
+          Image.asset(
+            "assets/FBfield.jpg", // Replace with the path to your background image
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Welcome to The Sports App",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                Image.asset("assets/splashgif.gif"),
+
+              ],
+            ),
+          ),
+        ],
       ),
-      )
-      ]),
     );
   }
 }
+
+

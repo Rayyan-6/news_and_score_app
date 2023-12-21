@@ -11,6 +11,7 @@ import 'HomePagesSerieA.dart';
 import 'LaligaHomePage.dart';
 import 'PageBody.dart';
 import 'SPL_homepage.dart';
+import 'StandingsIntro.dart';
 
 
 class FootballIntro extends StatefulWidget {
@@ -23,49 +24,141 @@ class FootballIntro extends StatefulWidget {
 class _FootballIntroState extends State<FootballIntro> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
+      drawer: Drawer(
+        backgroundColor: Colors.green,
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text(
+                'Options',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                ),
+              ),
+              // contentPadding: EdgeInsets.symmetric(horizontal: 90.0),
+              contentPadding: EdgeInsets.only(left: 90.0, top: 16.0,bottom: 16.0),
+              // tileColor: Colors.black12,
+              // onTap: () {
+              //   Navigator.pop(context);
+              // },
+            ),
+            ListTile(
+              title: Text(
+                'Home',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+              subtitle: Text("______________________________________________",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                ),),
+              // tileColor: Colors.black12,
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+              ListTile(
+                title: Text(
+                  'League Fixtures',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+                subtitle: Text("______________________________________________",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                  ),),
+                // tileColor: Colors.black12,
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+
+               ListTile(
+                title: Text(
+                  'Table Standings',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+                subtitle: Text("______________________________________________",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                  ),),
+                // tileColor: Colors.black12,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => StandingsIntro()),
+                  );                },
+              ),
+
+          ],
+        ),
+      ),
       appBar: AppBar(
         iconTheme: const IconThemeData(
-            color: Colors.white
+          color: Colors.white,
         ),
         centerTitle: true,
-        title: const Text("Live Football Scores",
+        title: const Text(
+          "Live Football Scores",
           style: TextStyle(
-              color: Colors.white
-          ),),
-        backgroundColor: Colors.blue,
-      ),
-      body: Center(
-        // padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-        child: CarouselSlider.builder(
-          itemCount: 9,
-        
-          itemBuilder: (BuildContext context, int index, int realIndex) {
-            List<String> names = ["Premier League", "Saudi Pro League", "Bundes Liga","Serie A","La Liga","Ligue 1","Current Live Matches","Major League Soccer","UCL"];
-            List<String> imgPaths= ["assets/pl.png","assets/SPL.png","assets/bundesliga.png","assets/seriea.png","assets/laliga.png","assets/ligue1.png","assets/clm.png","assets/mls.png","assets/ucl.png"];
-            List<Color> colours= [Colors.deepPurple.shade200,Colors.lime.shade400,Colors.teal.shade300,Colors.indigo.shade200,Colors.lightBlue.shade200,Colors.blueGrey.shade400,Colors.deepOrange.shade300,Colors.red.shade300,Colors.green.shade100];
-            List<String> countries= ["England","Saudi Arabia","Germany","Italy","Spain","France","Worldwide","USA","Europe"];
-            List<String> flags= ["assets/england.png","assets/saudi.png","assets/germany.png","assets/italy.png","assets/spain.png","assets/france.png","assets/world.png","assets/usa.png","assets/euro.png"];
-            return _buildCarouselItem(
-              context,
-              names[index],
-              imgPaths[index],
-              colours[index],
-              index+1,
-              countries[index],
-              flags[index],
-            );
-          },
-          options: CarouselOptions(
-            enlargeCenterPage: true,
-            // autoPlay: true,
-            aspectRatio: 8.0 / 10,
-            autoPlayCurve: Curves.fastOutSlowIn,
-            enableInfiniteScroll: true,
-            autoPlayAnimationDuration: Duration(milliseconds: 800),
-            viewportFraction: 0.8,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
+        backgroundColor: Colors.green,
+      ),
+      body: Stack(
+        children: [
+          // Background Image
+          Image.asset(
+            "assets/FBfield.jpg",
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Center(
+            child: CarouselSlider.builder(
+              itemCount: 9,
+              itemBuilder: (BuildContext context, int index, int realIndex) {
+                List<String> names = ["Premier League", "Saudi Pro League", "Bundes Liga", "Serie A", "La Liga", "Ligue 1", "Current Live Matches", "Major League Soccer", "UCL"];
+                List<String> imgPaths = ["assets/pl.png", "assets/SPL.png", "assets/bundesliga.png", "assets/seriea.png", "assets/laliga.png", "assets/ligue1.png", "assets/clm.png", "assets/mls.png", "assets/ucl.png"];
+                List<Color> colours = [Colors.deepPurple.shade200, Colors.lime.shade400, Colors.teal.shade300, Colors.indigo.shade200, Colors.lightBlue.shade200, Colors.blueGrey.shade400, Colors.deepOrange.shade300, Colors.red.shade300, Colors.green.shade100];
+                List<String> countries = ["England", "Saudi Arabia", "Germany", "Italy", "Spain", "France", "Worldwide", "USA", "Europe"];
+                List<String> flags = ["assets/england.png", "assets/saudi.png", "assets/germany.png", "assets/italy.png", "assets/spain.png", "assets/france.png", "assets/world.png", "assets/usa.png", "assets/euro.png"];
+                return _buildCarouselItem(
+                  context,
+                  names[index],
+                  imgPaths[index],
+                  colours[index],
+                  index + 1,
+                  countries[index],
+                  flags[index],
+                );
+              },
+              options: CarouselOptions(
+                enlargeCenterPage: true,
+                // autoPlay: true,
+                aspectRatio: 8.0 / 10,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enableInfiniteScroll: true,
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                viewportFraction: 0.8,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -76,7 +169,6 @@ Widget _buildCarouselItem(BuildContext context, String text, String imagePath, C
       onTap: () {
     Navigator.push(
       context,
-      // MaterialPageRoute(builder: (context) => PageScreen(text, color)),
       MaterialPageRoute(builder: (context) => getHomePage(pageNumber)),
     );
   },

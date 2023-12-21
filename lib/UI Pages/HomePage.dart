@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
             );
           } else if (snapshot.hasData && snapshot.data != null) {
             return PageBody(context,
-                snapshot.data!,1); // Use the non-null assertion operator (!)
+                snapshot.data!); // Use the non-null assertion operator (!)
           } else {
             return Center(
               child: Text('No data available'),
