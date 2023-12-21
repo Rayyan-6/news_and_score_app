@@ -59,7 +59,7 @@ class _FootballIntroState extends State<FootballIntro> {
                 ),),
               // tileColor: Colors.black12,
               onTap: () {
-                Navigator.pop(context);
+                Navigator.popUntil(context, (route) => route.isFirst);
               },
             ),
               ListTile(
@@ -96,10 +96,11 @@ class _FootballIntroState extends State<FootballIntro> {
                   ),),
                 // tileColor: Colors.black12,
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => StandingsIntro()),
-                  );                },
+                  Navigator.pop(context);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => StandingsIntro()));
+                  },
               ),
 
           ],
