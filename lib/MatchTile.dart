@@ -17,36 +17,41 @@ Widget MatchTile(SoccerMatch match) {
     margin: const EdgeInsets.symmetric(vertical: 12,horizontal: 16),
     child: Column(
       children:[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(),
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 0, 0, 6),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(child: SizedBox()),
+                           Text(
+                                      formattedDate,
+                                        style: TextStyle(
+                                               color: Colors.white,
+                                               fontSize: 12,
+                                               fontWeight: FontWeight.bold,
+                                        ),
+                                               ),
+                  Expanded(
+                    child: Padding(
+                     padding: const EdgeInsets.fromLTRB(100, 0, 0, 0),
+                     child: Text(
 
-                        Text(
-                                  formattedDate,
-                                    style: TextStyle(
-                                           color: Colors.white,
-                                           fontSize: 12,
-                                           fontWeight: FontWeight.bold,
-                                    ),
-                                           ),
 
-
-// Spacer(),
-
-             Text(
-              
-                  " ${match.status.elapsed}'",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
+                          " ${match.status.elapsed}'",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                                   ),
                   ),
-                ),
 
 
-          ],
+
+            ],
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

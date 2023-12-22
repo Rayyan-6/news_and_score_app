@@ -75,7 +75,7 @@ class _FootballIntroState extends State<FootballIntro> {
                     color: Colors.white,
                     fontSize: 10,
                   ),),
-                // tileColor: Colors.black12,
+                tileColor: Colors.black12,
                 onTap: () {
                   Navigator.pop(context);
                 },
