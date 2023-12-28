@@ -120,47 +120,99 @@ class _FootballIntroState extends State<FootballIntro> {
         ),
         backgroundColor: Colors.green,
       ),
+      // body: Stack(
+      //   children: [
+      //     // Background Image
+      //     Image.asset(
+      //       "assets/FBfield.jpg",
+      //       width: double.infinity,
+      //       height: double.infinity,
+      //       fit: BoxFit.cover,
+      //     ),
+      //     Center(
+      //       child: CarouselSlider.builder(
+      //         itemCount: 9,
+      //         itemBuilder: (BuildContext context, int index, int realIndex) {
+      //           List<String> names = ["Premier League", "Saudi Pro League", "Bundes Liga", "Serie A", "La Liga", "Ligue 1", "Current Live Matches", "Major League Soccer", "UCL"];
+      //           List<String> imgPaths = ["assets/pl.png", "assets/SPL.png", "assets/bundesliga.png", "assets/seriea.png", "assets/laliga.png", "assets/ligue1.png", "assets/clm.png", "assets/mls.png", "assets/ucl.png"];
+      //           List<Color> colours = [Colors.deepPurple.shade200, Colors.lime.shade400, Colors.teal.shade300, Colors.indigo.shade200, Colors.lightBlue.shade200, Colors.blueGrey.shade400, Colors.deepOrange.shade300, Colors.red.shade300, Colors.green.shade100];
+      //           List<String> countries = ["England", "Saudi Arabia", "Germany", "Italy", "Spain", "France", "Worldwide", "USA", "Europe"];
+      //           List<String> flags = ["assets/england.png", "assets/saudi.png", "assets/germany.png", "assets/italy.png", "assets/spain.png", "assets/france.png", "assets/world.png", "assets/usa.png", "assets/euro.png"];
+      //           return _buildCarouselItem(
+      //             context,
+      //             names[index],
+      //             imgPaths[index],
+      //             colours[index],
+      //             index + 1,
+      //             countries[index],
+      //             flags[index],
+      //           );
+      //         },
+      //         options: CarouselOptions(
+      //           enlargeCenterPage: true,
+      //           // autoPlay: true,
+      //           aspectRatio: 8.0 / 10,
+      //
+      //           autoPlayCurve: Curves.fastOutSlowIn,
+      //           enableInfiniteScroll: true,
+      //           autoPlayAnimationDuration: Duration(milliseconds: 800),
+      //           viewportFraction: 0.8,
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
       body: Stack(
         children: [
           // Background Image
           Image.asset(
-            "assets/FBfield.jpg",
+            "assets/FBfielddark.png",
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
           ),
           Center(
-            child: CarouselSlider.builder(
-              itemCount: 9,
-              itemBuilder: (BuildContext context, int index, int realIndex) {
-                List<String> names = ["Premier League", "Saudi Pro League", "Bundes Liga", "Serie A", "La Liga", "Ligue 1", "Current Live Matches", "Major League Soccer", "UCL"];
-                List<String> imgPaths = ["assets/pl.png", "assets/SPL.png", "assets/bundesliga.png", "assets/seriea.png", "assets/laliga.png", "assets/ligue1.png", "assets/clm.png", "assets/mls.png", "assets/ucl.png"];
-                List<Color> colours = [Colors.deepPurple.shade200, Colors.lime.shade400, Colors.teal.shade300, Colors.indigo.shade200, Colors.lightBlue.shade200, Colors.blueGrey.shade400, Colors.deepOrange.shade300, Colors.red.shade300, Colors.green.shade100];
-                List<String> countries = ["England", "Saudi Arabia", "Germany", "Italy", "Spain", "France", "Worldwide", "USA", "Europe"];
-                List<String> flags = ["assets/england.png", "assets/saudi.png", "assets/germany.png", "assets/italy.png", "assets/spain.png", "assets/france.png", "assets/world.png", "assets/usa.png", "assets/euro.png"];
-                return _buildCarouselItem(
-                  context,
-                  names[index],
-                  imgPaths[index],
-                  colours[index],
-                  index + 1,
-                  countries[index],
-                  flags[index],
-                );
-              },
-              options: CarouselOptions(
-                enlargeCenterPage: true,
-                // autoPlay: true,
-                aspectRatio: 8.0 / 10,
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enableInfiniteScroll: true,
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                viewportFraction: 0.8,
+            child: PhysicalModel(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(16.0), // Adjust the radius as needed
+              clipBehavior: Clip.antiAlias,
+              child: CarouselSlider.builder(
+                itemCount: 9,
+                itemBuilder: (BuildContext context, int index, int realIndex) {
+                  List<String> names = ["Premier League", "Saudi Pro League", "Bundes Liga", "Serie A", "La Liga", "Ligue 1", "Current Live Matches", "Major League Soccer", "UCL"];
+                  List<String> imgPaths = ["assets/pl.png", "assets/SPL.png", "assets/bundesliga.png", "assets/seriea.png", "assets/laliga.png", "assets/ligue1.png", "assets/clm.png", "assets/mls.png", "assets/ucl.png"];
+                  List<Color> colours = [Colors.deepPurple.shade200, Colors.lime.shade400, Colors.teal.shade300, Colors.indigo.shade200, Colors.lightBlue.shade200, Colors.blueGrey.shade400, Colors.deepOrange.shade300, Colors.red.shade300, Colors.green.shade100];
+                  List<String> countries = ["England", "Saudi Arabia", "Germany", "Italy", "Spain", "France", "Worldwide", "USA", "Europe"];
+                  List<String> flags = ["assets/england.png", "assets/saudi.png", "assets/germany.png", "assets/italy.png", "assets/spain.png", "assets/france.png", "assets/world.png", "assets/usa.png", "assets/euro.png"];
+                  return _buildCarouselItem(
+                    context,
+                    names[index],
+                    imgPaths[index],
+                    colours[index],
+                    index + 1,
+                    countries[index],
+                    flags[index],
+                  );
+                },
+                options: CarouselOptions(
+                  enlargeCenterPage: true,
+                  // autoPlay: true,
+                  aspectRatio: 8.0 / 10,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  viewportFraction: 0.8,
+                ),
               ),
             ),
           ),
         ],
       ),
+
+
+
+
+
     );
   }
 }

@@ -9,7 +9,8 @@ Widget MatchTile(SoccerMatch match) {
 
   return Container(
     decoration: BoxDecoration(
-      color: Colors.blueGrey[800],
+      // color: Colors.blueGrey[800],
+        color: Color.fromRGBO(0, 0, 0, 0.5),
       borderRadius: BorderRadius.circular(25.0)
     ),
     height: 75,

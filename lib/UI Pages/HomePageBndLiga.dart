@@ -14,54 +14,109 @@ class HomePageBndLiga extends StatefulWidget {
   @override
   State<HomePageBndLiga> createState() => _HomePageStateBndLiga();
 }
+//
+// class _HomePageStateBndLiga extends State<HomePageBndLiga> {
+//   List<Map<String, dynamic>> leagues = [];
+//   bool isLoading = true;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.teal[100],
+//       appBar: AppBar(
+//         iconTheme: IconThemeData(
+//             color: Colors.white
+//         ),
+//         centerTitle: true,
+//         backgroundColor: Colors.teal[600],
+//         title: Text("Bundes Liga",
+//           textAlign: TextAlign.center,
+//           style: TextStyle(
+//               color: Colors.white,
+//               fontSize: 30
+//           ),
+//
+//
+//         ),
+//       ),
+//       body: FutureBuilder(
+//
+//         //for premier league
+//         future: SoccerApiBndLiga().getAllMatches(),//change for respective sport
+//         builder: (context, snapshot) {
+//           if (snapshot.connectionState == ConnectionState.waiting) {
+//             return Center(child: CircularProgressIndicator());
+//           } else if (snapshot.hasError) {
+//             return Center(
+//               child: Text(
+//                   'Error loading data: Error print: ${snapshot.error} error end'),
+//             );
+//           } else if (snapshot.hasData && snapshot.data != null) {
+//             return PageBody(context,
+//                 snapshot.data!); // Use the non-null assertion operator (!)
+//           } else {
+//             return Center(
+//               child: Text('No data available'),
+//             );
+//           }
+//         },
+//       ),
+//     );
+//   }
+// }
 
 class _HomePageStateBndLiga extends State<HomePageBndLiga> {
   List<Map<String, dynamic>> leagues = [];
   bool isLoading = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal[100],
       appBar: AppBar(
         iconTheme: IconThemeData(
-            color: Colors.white
+          color: Colors.white,
         ),
         centerTitle: true,
-        backgroundColor: Colors.teal[600],
-        title: Text("Bundes Liga",
+        backgroundColor: Colors.green,
+        title: Text(
+          "Bundes Liga",
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white,
-              fontSize: 30
+            color: Colors.white,
+            fontSize: 30,
           ),
-
-
         ),
       ),
-      body: FutureBuilder(
-
-        //for premier league
-        future: SoccerApiBndLiga().getAllMatches(),//change for respective sport
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                  'Error loading data: Error print: ${snapshot.error} error end'),
-            );
-          } else if (snapshot.hasData && snapshot.data != null) {
-            return PageBody(context,
-                snapshot.data!); // Use the non-null assertion operator (!)
-          } else {
-            return Center(
-              child: Text('No data available'),
-            );
-          }
-        },
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/FBfield.jpg"), // Change the image path accordingly
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: FutureBuilder(
+          // for Bundes Liga
+          future: SoccerApiBndLiga().getAllMatches(), // change for respective sport
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white),));
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text(
+                    'Error loading data: Error print: ${snapshot.error} error end'),
+              );
+            } else if (snapshot.hasData && snapshot.data != null) {
+              return PageBody(context, snapshot.data!);
+            } else {
+              return Center(
+                child: Text('No data available'),
+              );
+            }
+          },
+        ),
       ),
     );
   }
 }
+
 
 
