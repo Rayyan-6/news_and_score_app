@@ -7,6 +7,7 @@ import 'package:sem_project_new/SoccerModel.dart';
 import 'package:sem_project_new/apiManager.dart';
 import 'package:sem_project_new/Basketball/api_manager_BB.dart';
 import 'package:sem_project_new/apiManagerLigue1.dart';
+import 'package:sem_project_new/apiManagerUCL.dart';
 import '../SPL_apiManager.dart';
 import 'PageBodyBB.dart';
 
@@ -72,32 +73,35 @@ class _HomePageStateUCL extends State<HomePageUCL> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.green,
-        title: Text(
-          "UEFA Champions League",
-          textAlign: TextAlign.center,
-          style: TextStyle(
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/FBfield.jpg"),
+          fit: BoxFit.cover,
+        )
+        ,),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          iconTheme: IconThemeData(
             color: Colors.white,
-            fontSize: 25,
+            size: 30,
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            "UEFA Champions League",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 25,
+            ),
           ),
         ),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/FBfield.jpg"), // Change the image path accordingly
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: FutureBuilder(
-          // for UEFA Champions League
-          future: SoccerApiLigue1().getAllMatches(), // change for respective sport
+        body: FutureBuilder(
+          //for premier league
+          future: SoccerApiUCL().getAllMatches(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white),));
@@ -115,6 +119,7 @@ class _HomePageStateUCL extends State<HomePageUCL> {
             }
           },
         ),
+
       ),
     );
   }

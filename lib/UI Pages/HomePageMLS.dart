@@ -69,35 +69,37 @@ class HomePageMLS extends StatefulWidget {
 class _HomePageStateMLS extends State<HomePageMLS> {
   List<Map<String, dynamic>> leagues = [];
   bool isLoading = true;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.green,
-        title: Text(
-          "Major League Soccer",
-          textAlign: TextAlign.center,
-          style: TextStyle(
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/FBfield.jpg"),
+          fit: BoxFit.cover,
+        )
+        ,),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          iconTheme: IconThemeData(
             color: Colors.white,
-            fontSize: 25,
+            size: 30,
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            "Major League Soccer",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 30,
+            ),
           ),
         ),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/FBfield.jpg"), // Change the image path accordingly
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: FutureBuilder(
-          // for Major League Soccer
-          future: SoccerApiMLS().getAllMatches(), // change for respective sport
+        body: FutureBuilder(
+          //for premier league
+          future: SoccerApiMLS().getAllMatches(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white),));
@@ -115,6 +117,7 @@ class _HomePageStateMLS extends State<HomePageMLS> {
             }
           },
         ),
+
       ),
     );
   }

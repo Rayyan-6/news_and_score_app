@@ -72,32 +72,35 @@ class _HomePageStateSerieA extends State<HomePageSerieA> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.green,
-        title: Text(
-          "Serie A",
-          textAlign: TextAlign.center,
-          style: TextStyle(
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/FBfield.jpg"),
+          fit: BoxFit.cover,
+        )
+        ,),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          iconTheme: IconThemeData(
             color: Colors.white,
-            fontSize: 30,
+            size: 30,
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            "Serie A",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 30,
+            ),
           ),
         ),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/FBfield.jpg"), // Change the image path accordingly
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: FutureBuilder(
-          // for Serie A
-          future: SoccerApiSerieA().getAllMatches(), // change for respective sport
+        body: FutureBuilder(
+          //for premier league
+          future: SoccerApiSerieA().getAllMatches(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white),));
@@ -115,6 +118,7 @@ class _HomePageStateSerieA extends State<HomePageSerieA> {
             }
           },
         ),
+
       ),
     );
   }

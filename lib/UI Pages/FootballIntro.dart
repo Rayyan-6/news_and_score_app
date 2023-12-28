@@ -27,7 +27,7 @@ class _FootballIntroState extends State<FootballIntro> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/FBfield.jpg"),
+          image: AssetImage("assets/FBfielddark.png"),
           fit: BoxFit.cover,
         )
         ,),

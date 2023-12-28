@@ -15,57 +15,6 @@ class HomePagePL extends StatefulWidget {
   State<HomePagePL> createState() => _HomePageStatePL();
 }
 
-// class _HomePageStatePL extends State<HomePagePL> {
-//   List<Map<String, dynamic>> leagues = [];
-//   bool isLoading = true;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.deepPurple.shade100,
-//       appBar: AppBar(
-//         iconTheme: IconThemeData(
-//           color: Colors.white
-//         ),
-//         centerTitle: true,
-//         backgroundColor: Colors.purple.shade400,
-//         title: Text("Premier League",
-//           textAlign: TextAlign.center,
-//           style: TextStyle(
-//               color: Colors.white,
-//               fontSize: 30
-//           ),
-//
-//
-//         ),
-//       ),
-//       body: FutureBuilder(
-//
-//         //for premier league
-//         future: SoccerApiPL().getAllMatches(),
-//         builder: (context, snapshot) {
-//           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return Center(child: CircularProgressIndicator());
-//           } else if (snapshot.hasError) {
-//             return Center(
-//               child: Text(
-//                   'Error loading data: Error print: ${snapshot.error} error end'),
-//             );
-//           } else if (snapshot.hasData && snapshot.data != null) {
-//             return PageBody(context,
-//                 snapshot.data!);
-//           } else {
-//             return Center(
-//               child: Text('No data available'),
-//             );
-//           }
-//         },
-//       ),
-//     );
-//   }
-// }
-
-
-
 
 class _HomePageStatePL extends State<HomePagePL> {
   List<Map<String, dynamic>> leagues = [];
@@ -73,53 +22,56 @@ class _HomePageStatePL extends State<HomePagePL> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.green,
-        title: Text(
-          "Premier League",
-          textAlign: TextAlign.center,
-          style: TextStyle(
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/FBfield.jpg"),
+          fit: BoxFit.cover,
+        )
+        ,),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          iconTheme: IconThemeData(
             color: Colors.white,
-            fontSize: 30,
+            size: 30,
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            "Premier League",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 30,
+            ),
           ),
         ),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/FBfield.jpg"), // Change the image path accordingly
-            fit: BoxFit.cover,
+        body: FutureBuilder(
+            //for premier league
+            future: SoccerApiPL().getAllMatches(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white),));
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                      'Error loading data: Error print: ${snapshot.error} error end'),
+                );
+              } else if (snapshot.hasData && snapshot.data != null) {
+                return PageBody(context, snapshot.data!);
+              } else {
+                return Center(
+                  child: Text('No data available'),
+                );
+              }
+            },
           ),
-        ),
-        child: FutureBuilder(
-          //for premier league
-          future: SoccerApiPL().getAllMatches(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white),));
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text(
-                    'Error loading data: Error print: ${snapshot.error} error end'),
-              );
-            } else if (snapshot.hasData && snapshot.data != null) {
-              return PageBody(context, snapshot.data!);
-            } else {
-              return Center(
-                child: Text('No data available'),
-              );
-            }
-          },
-        ),
+
       ),
     );
   }
 }
-
 
 
