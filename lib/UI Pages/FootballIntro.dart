@@ -27,7 +27,7 @@ class _FootballIntroState extends State<FootballIntro> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/FBfielddark.png"),
+          image: AssetImage("assets/FBfield.jpg"),
           fit: BoxFit.cover,
         )
         ,),
@@ -122,7 +122,7 @@ class _FootballIntroState extends State<FootballIntro> {
           ),
           centerTitle: true,
           title: const Text(
-            "Live Football Scores",
+            "Latest Leagues Updates",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -170,18 +170,6 @@ class _FootballIntroState extends State<FootballIntro> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
