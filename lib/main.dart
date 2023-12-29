@@ -22,14 +22,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      // routes: {
-      //   // '/': (context) => MainScreen_2(),  // Default route
-      //   '/leagueFixtures': (context) => FootballIntro(),
-      //   '/standings': (context) => StandingsIntro(),
-      //   // Add more named routes for other pages
-      // },
-
-
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

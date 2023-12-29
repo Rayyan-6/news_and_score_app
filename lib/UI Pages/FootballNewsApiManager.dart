@@ -147,7 +147,8 @@ class _NewsUIState extends State<NewsUI> {
           title: Text(
             'Football News',
             style: TextStyle(color: Colors.white,
-                fontWeight: FontWeight.bold
+                fontWeight: FontWeight.bold,
+              fontSize: 25
             ),
           ),
         ),
