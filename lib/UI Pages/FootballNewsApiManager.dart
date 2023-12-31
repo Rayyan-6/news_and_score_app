@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'generalNewsUI.dart';
+
 class NewsUI extends StatefulWidget {
   @override
   _NewsUIState createState() => _NewsUIState();
@@ -28,214 +30,39 @@ class _NewsUIState extends State<NewsUI> {
 
 
 
-  Future<List<dynamic>> fetchData() async {
-    try {
-      List<dynamic> allArticles = [];
-
-      for (String apiUrl in apiEndpoints) {
-        final response = await http.get(Uri.parse(apiUrl));
-        if (response.statusCode == 200) {
-          final Map<String, dynamic> data = json.decode(response.body);
-          allArticles.addAll(data['articles']);
-        } else {
-          throw Exception('Failed to load data from $apiUrl');
-        }
-      }
-
-      allArticles.shuffle();
-      return allArticles;
-    } catch (error) {
-      print('Error: $error');
-      return [];
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: AppBar(
-  //       centerTitle: true,
-  //       backgroundColor: Colors.lime[800],
-  //       title: Text('News App',
-  //       style: TextStyle(
-  //         color: Colors.white
-  //       ),),
-  //     ),
+  // Future<List<dynamic>> fetchData() async {
+  //   try {
+  //     List<dynamic> allArticles = [];
   //
-  //     body: FutureBuilder(
-  //       future: fetchData(),
-  //       builder: (context, snapshot) {
-  //         if (snapshot.connectionState == ConnectionState.waiting) {
-  //           return Center(
-  //             child: CircularProgressIndicator(),
-  //           );
-  //         } else if (snapshot.hasError) {
-  //           return Center(
-  //             child: Text('Error: ${snapshot.error}'),
-  //           );
-  //         } else if (!snapshot.hasData || (snapshot.data as List).isEmpty) {
-  //           return Center(
-  //             child: Text('No articles available.'),
-  //           );
-  //         } else {
-  //           List<dynamic> articles = snapshot.data as List;
-  //           return ListView.builder(
-  //             itemCount: articles.length,
-  //             itemBuilder: (context, index) {
-  //               var article = articles[index];
-  //               return Card(
-  //                 color: Colors.lime[300],
-  //                 margin: EdgeInsets.all(8.0),
-  //                 child: ListTile(
-  //                   trailing: article['urlToImage'] != null && article['urlToImage'].isNotEmpty
-  //                       ? Image.network(
-  //                     article['urlToImage'],
-  //                     width: 100.0,
-  //                     height: 90.0,
-  //                   )
-  //                       : Image.asset(
-  //                     'assets/pl.png',
-  //                     width: 100.0,
-  //                     height: 90.0,
-  //                   ),
-  //                   title: Text(article['title']),
-  //                   subtitle: Text(article['author'] ?? 'Unknown Author'),
-  //                   onTap: () {
-  //                     // Handle tapping on the article
-  //                     // You can navigate to a new page or show more details here
-  //                   },
-  //                 ),
-  //               );
-  //             },
-  //           );
-  //         }
-  //       },
-  //     ),
+  //     for (String apiUrl in apiEndpoints) {
+  //       final response = await http.get(Uri.parse(apiUrl));
+  //       if (response.statusCode == 200) {
+  //         final Map<String, dynamic> data = json.decode(response.body);
+  //         allArticles.addAll(data['articles']);
+  //       } else {
+  //         throw Exception('Failed to load data from $apiUrl');
+  //       }
+  //     }
   //
-  //
-  //
-  //
-  //  );
+  //     allArticles.shuffle();
+  //     return allArticles;
+  //   } catch (error) {
+  //     print('Error: $error');
+  //     return [];
+  //   }
   // }
-
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchData();
+  // }
 
 //////////////////////new UI.///////hui hui hui/////////////////////
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/FBfield.jpg"),
-          fit: BoxFit.cover,
-        )
-        ,),
+    return generalNewsUI(title: 'Football News', apiEndpoints: apiEndpoints,);
 
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          title: Text(
-            'Football News',
-            style: TextStyle(color: Colors.white,
-                fontWeight: FontWeight.bold,
-              fontSize: 25
-            ),
-          ),
-        ),
-        body:
-
-        // ListView.builder for displaying news articles
-
-        FutureBuilder(
-          future: fetchData(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white),),
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text('Error: ${snapshot.error}'),
-              );
-            } else if (!snapshot.hasData || (snapshot.data as List).isEmpty) {
-              return Center(
-                child: Text('No articles available.'),
-              );
-            } else {
-              List<dynamic> articles = snapshot.data as List;
-              return ListView.builder(
-                itemCount: articles.length,
-                itemBuilder: (context, index) {
-                  var article = articles[index];
-
-                  String truncateText(String text, int maxLength) {
-                    if (text.length <= maxLength) {
-                      return text;
-                    }
-                    return '${text.substring(0, maxLength)}...';
-                  }
-
-                  String truncatedTitle = truncateText(article['title'], 70);
-
-                  return Card(
-
-                    color: Color.fromRGBO(0, 0, 0, 0.3),
-                    margin: EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 130,
-                      width: double.infinity,
-                      child: ListTile(
-                        trailing: article['urlToImage'] != null && article['urlToImage'].isNotEmpty
-                            ? Image.network(
-                          article['urlToImage'],
-                          width: 100.0,
-                          height: 90.0,
-                        )
-                            : Image.asset(
-                          'assets/pl.png',
-                          width: 100.0,
-                          height: 90.0,
-                        ),
-                        title: Text(truncatedTitle,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
-
-                          ),
-                        ),
-                        subtitle: Text(article['author'] ?? 'Unknown Author',
-                          style: TextStyle(
-                              color: Colors.white
-
-                          ),
-                        ),
-                        onTap: () {
-                          // Handle tapping on the article
-                          // You can navigate to a new page or show more details here
-                        },
-                      ),
-                    ),
-                  );
-                },
-              );
-            }
-          },
-        ),
-
-
-      ),
-    );
-    //container
   }
 
 

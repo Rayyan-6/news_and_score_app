@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // Delayed navigation to the main screen after 5 seconds
     Timer(
-      Duration(seconds: 10),
+      Duration(seconds: 7),
           () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => MainScreen_3()),

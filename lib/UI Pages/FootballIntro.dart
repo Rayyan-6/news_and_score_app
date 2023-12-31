@@ -114,23 +114,52 @@ class _FootballIntroState extends State<FootballIntro> {
             ],
           ),
         ),
-        appBar: AppBar(
 
-          iconTheme: const IconThemeData(
-            size: 30,
-            color: Colors.white,
-          ),
-          centerTitle: true,
-          title: const Text(
-            "Latest Leagues Updates",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
+          appBar: AppBar(
+
+            iconTheme: const IconThemeData(
+              size: 30,
               color: Colors.white,
-              fontSize: 25
             ),
+            centerTitle: true,
+            title:  const Text(
+                "Latest Leagues Updates",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 25
+                ),
+              ),
+
+            backgroundColor: Colors.transparent,
           ),
-          backgroundColor: Colors.transparent,
-        ),
+
+
+        // appBar: PreferredSize(
+        //   preferredSize: Size.fromHeight(100.0),
+        //   child: AppBar(
+        //     iconTheme: const IconThemeData(
+        //       size: 30,
+        //       color: Colors.white,
+        //     ),
+        //     centerTitle: true,
+        //     flexibleSpace: Padding(
+        //       padding: const EdgeInsets.fromLTRB(16, 70, 16, 0), // Adjust top padding
+        //       child: FlexibleSpaceBar(
+        //         title: const Text(
+        //           "Latest Leagues Updates",
+        //           style: TextStyle(
+        //             fontWeight: FontWeight.bold,
+        //             color: Colors.white,
+        //             fontSize: 25,
+        //           ),
+        //         ),
+        //         centerTitle: true,
+        //       ),
+        //     ),
+        //     backgroundColor: Colors.transparent,
+        //   ),
+        // ),
         body:
 
             Center(
