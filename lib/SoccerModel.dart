@@ -9,14 +9,17 @@ class SoccerMatch {
   Team home;
   Team away;
   Goal goal;
-  SoccerMatch(this.fixture, this.status,this.home, this.away, this.goal);
+  Venue venue;
+  SoccerMatch(this.fixture, this.status,this.home, this.away, this.goal,this.venue);
   factory SoccerMatch.fromJson(Map<String, dynamic> json) {
     return SoccerMatch(
         Fixture.fromJson(json['fixture']),
         Status.fromJson(json['fixture']['status'] ?? {}), //from Status.fromJson(json['status']) to Status.fromJson(json['fixture']['status'])
         Team.fromJson(json['teams']['home']),
         Team.fromJson(json['teams']['away']),
-        Goal.fromJson(json['goals']??{}) );
+        Goal.fromJson(json['goals']??{}),
+        Venue.fromJson(json['venue']??{})
+    );
   }
 }
 
@@ -52,7 +55,7 @@ class Team {
   int id;
   String name;
   String logoUrl;
-  bool? winner; // ? null safety --> added by bilal
+  bool? winner; // ? null safety
   Team(this.id, this.name, this.logoUrl, this.winner);
   factory Team.fromJson(Map<String, dynamic> json) {
     return Team(json['id'], json['name'], json['logo'], json['winner']);
@@ -66,5 +69,16 @@ class Goal {
 
   factory Goal.fromJson(Map<String, dynamic> json) {
     return Goal(json['home']?? 0, json['away']?? 0);
+  }
+}
+
+
+class Venue {
+  String name;
+  String city;
+  Venue(this.name, this.city);
+
+  factory Venue.fromJson(Map<String, dynamic> json) {
+    return Venue(json['name']?? 'null', json['city']?? 'null');
   }
 }

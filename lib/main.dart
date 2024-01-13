@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sem_project_new/UI%20Pages/FootballIntro.dart';
-import 'package:sem_project_new/UI%20Pages/MainScreen_2.dart';
 // import 'package:sem_project_new/UI%20Pages/MyHomePage.dart';
 import 'package:sem_project_new/UI%20Pages/SplashScreen.dart';
 import 'package:sem_project_new/UI%20Pages/StandingsIntro.dart';

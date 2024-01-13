@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'MainScreen.dart';
-import 'MainScreen_2.dart';
 import 'MainScreen_3.dart';
 // import 'package:google_mobile_ads/google_mobile_ads.dart';
 
