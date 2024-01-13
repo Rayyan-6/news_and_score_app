@@ -31,7 +31,8 @@ Widget PageBody(BuildContext context,List<SoccerMatch> allmatches) {//int league
           child: ListView.builder(
             itemCount: allmatches.length,
             itemBuilder: (context, index) {
-              return MatchTile(allmatches[index]);
+              // return MatchTile(allmatches[index]);
+              return MatchTile(allmatches[index], match: allmatches[index],);
             },
           ),
         )

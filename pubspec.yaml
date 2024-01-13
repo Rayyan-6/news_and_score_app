@@ -39,6 +39,7 @@ dependencies:
   http: ^1.1.2
   url_launcher: ^6.2.2
   webview_flutter: ^4.4.2
+#  google_mobile_ads: ^4.0.0
 
 dev_dependencies:
   flutter_test:
