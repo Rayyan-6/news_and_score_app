@@ -12,6 +12,7 @@ import 'LaligaHomePage.dart';
 import 'PageBody.dart';
 import 'SPL_homepage.dart';
 import 'StandingsIntro.dart';
+import 'StatsPage.dart';
 
 
 class FootballIntro extends StatefulWidget {
@@ -110,6 +111,8 @@ class _FootballIntroState extends State<FootballIntro> {
                       MaterialPageRoute(builder: (context) => StandingsIntro()));
                 },
               ),
+
+
 
             ],
           ),

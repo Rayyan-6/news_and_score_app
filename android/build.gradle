@@ -7,6 +7,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.8'
     }
 }
 
@@ -14,12 +15,14 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+
         maven {
           url 'http://download.flutter.io' // used this to resolve some issues. which could later be removed
           allowInsecureProtocol = true // used insecure protocol
 
         }
     }
+
 }
 
 rootProject.buildDir = '../build'
@@ -33,3 +36,4 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+apply plugin: 'com.google.gms.google-services'

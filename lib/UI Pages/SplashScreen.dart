@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
 import 'MainScreen.dart';
 import 'MainScreen_3.dart';
+import 'package:http/http.dart' as http;
 // import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 
@@ -13,16 +15,42 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+
+  Future<bool> fetchReviewStatus() async{
+    final response = await http.get(Uri.parse("https://project-backend-teal.vercel.app/myApi"));
+    // final response = await http.get(Uri.parse("localhost:6900/myApi"));
+    // final response = await http.get(Uri.parse("https://tailor-api-seven.vercel.app/controller"));
+
+    final Map<String,dynamic> data = json.decode(response.body) ;
+
+
+   print(response.body);
+    print(data.toString());
+
+    // print("response of 1 is"+data['in_review']);
+    // print("response of 2  is"+data['in_review']);
+    return data['in_review'];
+
+
+  }
+
+
   @override
   void initState() {
     super.initState();
-    Timer(
-      Duration(seconds: 7),
-          () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => MainScreen_3()),
-      ),
-    );
+    fetchReviewStatus().then((value) {
+      if (value){
+        Timer(
+          Duration(seconds: 5),
+              () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => MainScreen_3()),
+          ),
+        );
+      }
+    });
+
   }
 
   @override

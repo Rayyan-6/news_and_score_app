@@ -1,8 +1,6 @@
 import 'package:sem_project_new/UI%20Pages/HomePage.dart';
 
 
-
-
 class SoccerMatch {
   Fixture fixture;
   Status status;
@@ -15,8 +13,10 @@ class SoccerMatch {
     return SoccerMatch(
         Fixture.fromJson(json['fixture']),
         Status.fromJson(json['fixture']['status'] ?? {}), //from Status.fromJson(json['status']) to Status.fromJson(json['fixture']['status'])
-        Team.fromJson(json['teams']['home']),
-        Team.fromJson(json['teams']['away']),
+        Team.fromJson(json['teams']['home'], true), // Pass true for home team
+        Team.fromJson(json['teams']['away'], false), // Pass false for away team
+        // Team.fromJson(json['teams']['home']),
+        // Team.fromJson(json['teams']['away']),
         Goal.fromJson(json['goals']??{}),
         Venue.fromJson(json['venue']??{})
     );
@@ -57,8 +57,11 @@ class Team {
   String logoUrl;
   bool? winner; // ? null safety
   Team(this.id, this.name, this.logoUrl, this.winner);
-  factory Team.fromJson(Map<String, dynamic> json) {
-    return Team(json['id'], json['name'], json['logo'], json['winner']);
+  factory Team.fromJson(Map<String, dynamic> json,bool isHome) {
+    return Team(json['id'], json['name'], json['logo'],
+        isHome ? json['winner'] : null, // Set winner only for home team
+        // json['winner']
+    );
   }
 }
 
