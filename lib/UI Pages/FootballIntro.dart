@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sem_project_new/SoccerModel.dart';
+import '../adsPage.dart';
 import 'HomePage.dart';
 import 'HomePageBndLiga.dart';
 import 'HomePageLigue1.dart';
@@ -23,6 +25,54 @@ class FootballIntro extends StatefulWidget {
 }
 
 class _FootballIntroState extends State<FootballIntro> {
+  InterstitialAd? _interstitialAd;
+  @override
+  void initState() {
+    _showInterstellerAd();
+
+    super.initState();
+
+    _createInterstellerAd();
+
+    _showInterstellerAd();
+  }
+
+  /////////////////////////////////////
+  void _createInterstellerAd() {
+    InterstitialAd.load(
+        adUnitId: AdMobService.interstitialAdUnitId!,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          // Called when an ad is successfully received.
+          onAdLoaded: (ad) {
+            debugPrint('$ad loaded.');
+            // Keep a reference to the ad so you can show it later.
+            _interstitialAd = ad;
+          },
+          // Called when an ad request failed.
+          onAdFailedToLoad: (LoadAdError error) {
+            debugPrint('InterstitialAd failed to load: $error');
+          },
+        ));
+  }
+
+  void _showInterstellerAd() {
+    if (_interstitialAd != null) {
+      _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          _createInterstellerAd();
+        },
+        onAdFailedToShowFullScreenContent: (ad, error) {
+          ad.dispose();
+          _createInterstellerAd();
+        },
+      );
+      _interstitialAd!.show();
+      _interstitialAd == null;
+    }
+  }
+  /////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,6 +118,7 @@ class _FootballIntroState extends State<FootballIntro> {
                   ),),
                 // tileColor: Colors.black12,
                 onTap: () {
+                  _showInterstellerAd();
                   Navigator.popUntil(context, (route) => route.isFirst);
                 },
               ),
@@ -86,6 +137,8 @@ class _FootballIntroState extends State<FootballIntro> {
                   ),),
                 tileColor: Colors.black54,
                 onTap: () {
+                  _showInterstellerAd();
+
                   Navigator.pop(context);
                 },
               ),
@@ -105,6 +158,8 @@ class _FootballIntroState extends State<FootballIntro> {
                   ),),
                 // tileColor: Colors.black12,
                 onTap: () {
+                  _showInterstellerAd();
+
                   Navigator.pop(context);
                   Navigator.pushReplacement(
                       context,
@@ -138,31 +193,6 @@ class _FootballIntroState extends State<FootballIntro> {
           ),
 
 
-        // appBar: PreferredSize(
-        //   preferredSize: Size.fromHeight(100.0),
-        //   child: AppBar(
-        //     iconTheme: const IconThemeData(
-        //       size: 30,
-        //       color: Colors.white,
-        //     ),
-        //     centerTitle: true,
-        //     flexibleSpace: Padding(
-        //       padding: const EdgeInsets.fromLTRB(16, 70, 16, 0), // Adjust top padding
-        //       child: FlexibleSpaceBar(
-        //         title: const Text(
-        //           "Latest Leagues Updates",
-        //           style: TextStyle(
-        //             fontWeight: FontWeight.bold,
-        //             color: Colors.white,
-        //             fontSize: 25,
-        //           ),
-        //         ),
-        //         centerTitle: true,
-        //       ),
-        //     ),
-        //     backgroundColor: Colors.transparent,
-        //   ),
-        // ),
         body:
 
             Center(

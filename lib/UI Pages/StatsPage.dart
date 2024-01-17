@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import '../adsPage.dart';
 
 class StatsPage extends StatefulWidget {
   final int fixtureId;
@@ -23,6 +26,9 @@ class _StatsPageState extends State<StatsPage> {
   void initState() {
     super.initState();
     _statsData = fetchData();
+    _createInterstellerAd();
+    _createBanner();
+    _showInterstellerAd();
   }
 
   Future<Map<String, dynamic>> fetchData() async {
@@ -36,6 +42,56 @@ class _StatsPageState extends State<StatsPage> {
       throw Exception('Failed to load data');
     }
 
+  }
+  /////ads
+
+  BannerAd? _bannerAd;
+
+
+  void _createBanner() {
+    _bannerAd = BannerAd(
+        size: AdSize.fullBanner,
+        adUnitId: AdMobService.bannerAdUnitId!,
+        listener: AdMobService.bannerAdListener,
+        request: const AdRequest())
+      ..load();
+  }
+  InterstitialAd? _interstitialAd;
+
+  ////ads
+  void _createInterstellerAd() {
+    InterstitialAd.load(
+        adUnitId: AdMobService.interstitialAdUnitId!,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          // Called when an ad is successfully received.
+          onAdLoaded: (ad) {
+            debugPrint('$ad loaded.');
+            // Keep a reference to the ad so you can show it later.
+            _interstitialAd = ad;
+          },
+          // Called when an ad request failed.
+          onAdFailedToLoad: (LoadAdError error) {
+            debugPrint('InterstitialAd failed to load: $error');
+          },
+        ));
+  }
+
+  void _showInterstellerAd() {
+    if (_interstitialAd != null) {
+      _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          _createInterstellerAd();
+        },
+        onAdFailedToShowFullScreenContent: (ad, error) {
+          ad.dispose();
+          _createInterstellerAd();
+        },
+      );
+      _interstitialAd!.show();
+      _interstitialAd == null;
+    }
   }
 
   @override
@@ -83,82 +139,21 @@ class _StatsPageState extends State<StatsPage> {
             },
           ),
         ),
+        // bottomNavigationBar: (_bannerAd == null)
+        //     ? Container(
+        //   color: Colors.white,
+        //   height: 60,
+        //   width: 470,)
+        //     : SizedBox(
+        //   height: 60,
+        //   width: 470,
+        //   child: AdWidget(ad: _bannerAd!),
+        // ),
       ),
     );
   }
 }
 
-// class FootballStatsCard extends StatelessWidget {
-//   final Map<String, dynamic>? stats;
-//
-//   FootballStatsCard({required this.stats});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     if (stats == null) {
-//       return Text('No data available');
-//     }
-//
-//     var team = stats!['team'];
-//     var teamLogo = team['logo'];
-//     var teamName = team['name'];
-//     var statistics = stats!['statistics'];
-//
-//
-//
-//     return Card(
-//       color: Color.fromRGBO(0, 0, 0, 0.5),
-//       margin: EdgeInsets.all(16.0),
-//       child: Column(
-//         children: <Widget>[
-//
-//           Image.network(teamLogo),
-//
-//              ListTile(
-//               title: Text('$teamName',style: TextStyle(
-//                 color: Colors.white,
-//                 fontWeight: FontWeight.bold,
-//                 fontSize: 25,
-//               ),),
-//             ),
-//
-//           Divider(),
-//           Container(
-//             height: 200,
-//             child: SingleChildScrollView(
-//               child: Column(
-//                 children: <Widget>[
-//                   ListView.builder(
-//                     physics: NeverScrollableScrollPhysics(),
-//                     shrinkWrap: true,
-//                     itemCount: statistics.length,
-//                     itemBuilder: (context, index) {
-//                       var stat = statistics[index];
-//                       return ListTile(
-//                         title: Text(stat['type'],style: TextStyle(
-//                           color: Colors.white,
-//                           fontWeight: FontWeight.bold,
-//                           fontSize: 18,
-//                         ),),
-//                         subtitle: Text(stat['value'].toString(),style: TextStyle(
-//                           color: Colors.white,
-//
-//                           fontSize: 17,
-//                         ),),
-//                       );
-//                     },
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//
-//
-//   }
-// }
 
 class FootballStatsCard extends StatelessWidget {
   final Map<String, dynamic>? stats;

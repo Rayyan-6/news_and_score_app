@@ -17,11 +17,14 @@ class MainScreen_3 extends StatefulWidget {
   State<MainScreen_3> createState() => _MainScreen_3State();
 }
 
+
+
+
 class _MainScreen_3State extends State<MainScreen_3> {
   InterstitialAd? _interstitialAd;
 
 
-  //////////////////aint ds
+  //////////////////interstitial ads
 
 
 
@@ -160,9 +163,48 @@ class _MainScreen_3State extends State<MainScreen_3> {
 
 /////////
 Widget _buildCarouselItem(
+
     BuildContext context, String imagePath, int pageNumber) {
+  InterstitialAd? _interstitialAd;
+
+  void _createInterstellerAd() {
+    InterstitialAd.load(
+        adUnitId: AdMobService.interstitialAdUnitId!,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          // Called when an ad is successfully received.
+          onAdLoaded: (ad) {
+            debugPrint('$ad loaded.');
+            // Keep a reference to the ad so you can show it later.
+            _interstitialAd = ad;
+          },
+          // Called when an ad request failed.
+          onAdFailedToLoad: (LoadAdError error) {
+            debugPrint('InterstitialAd failed to load: $error');
+          },
+        ));
+  }
+
+  void _showInterstellerAd() {
+    if (_interstitialAd != null) {
+      _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          _createInterstellerAd();
+        },
+        onAdFailedToShowFullScreenContent: (ad, error) {
+          ad.dispose();
+          _createInterstellerAd();
+        },
+      );
+      _interstitialAd!.show();
+      _interstitialAd == null;
+    }
+  }
   return InkWell(
     onTap: () {
+      _createInterstellerAd();
+      _showInterstellerAd();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => getHomePage(pageNumber)),
