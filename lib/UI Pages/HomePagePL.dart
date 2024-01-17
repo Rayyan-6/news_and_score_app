@@ -5,8 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:http/http.dart' as http;
 import 'package:sem_project_new/UI%20Pages/PageBody.dart';
 import 'package:sem_project_new/SoccerModel.dart';
-import 'package:sem_project_new/apiManager.dart';
-import 'package:sem_project_new/Basketball/api_manager_BB.dart';
+import 'package:sem_project_new/apiManagerCurrMatch.dart';
 
 import '../adsPage.dart';
 import '../apiManagerPL.dart';

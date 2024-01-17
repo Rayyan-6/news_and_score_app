@@ -19,7 +19,6 @@ class _AmericanNewsUIState extends State<AmericanNewsUI> {
   // Initialize a list to store articles
   List<dynamic> articles = [];
 
-  //////////////////////new UI.///////hui hui hui/////////////////////
   @override
   Widget build(BuildContext context) {
     return generalNewsUI(title: 'American News', apiEndpoints: apiEndpoints,);

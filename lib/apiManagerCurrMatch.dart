@@ -6,7 +6,6 @@ import 'package:sem_project_new/SoccerModel.dart';
 
 class SoccerApi {
   final String apiUrl = 'https://v3.football.api-sports.io/fixtures?live=all';
-  // final String apiUrl = 'https://v3.football.api-sports.io/fixtures?season=2023&league=39';
 
 
   //headers

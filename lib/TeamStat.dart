@@ -7,10 +7,7 @@ Widget TeamStat(
 ) //removed 4th srgument 'home'
 
 {
-  // List logourl1 =logourl.toString().split('io/');
-  // String firstUrl = "https://media-4.api-sports.io/";
-  // String secondUrl = logourl1[1];
-  // print(secondUrl);
+
 
   return Expanded(
       child: Column(

@@ -109,6 +109,7 @@ class _StandingsTableState extends State<StandingsTable> {
                    trailing: Image.network(
                      team.logo,
                      width: 36,
+                     height: 36,
                    ),
                    title: Text(team.teamName,
                      style: TextStyle(

@@ -9,24 +9,7 @@ import 'StandingsTable.dart';
 Widget PageBody(BuildContext context,List<SoccerMatch> allmatches) {//int leagueId added
   return Column(
       children: [
-        // const Text("matches",
-        //   style: TextStyle(
-        //     color: Colors.black,
-        //     fontSize: 20,
-        //   ),),
 
-        // ElevatedButton(
-        //
-        //     onPressed: (){
-        //       Navigator.push(
-        //         context,
-        //         // MaterialPageRoute(builder: (context) => PageScreen(text, color)),
-        //         MaterialPageRoute(builder: (context) => StandingsTable(leagueId: leagueId)),
-        //       );
-        // },
-        //     child: Text("Standings")
-        //
-        // ),
         Expanded(
           child: ListView.builder(
             itemCount: allmatches.length,

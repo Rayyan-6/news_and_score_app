@@ -89,16 +89,6 @@ class _generalNewsUIState extends State<generalNewsUI> {
 
 
 
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //
-  //   _createInterstellerAd();
-  //   _createBanner();
-  //   _showInterstellerAd();
-  // }
-
   void _createBanner() {
     _bannerAd = BannerAd(
         size: AdSize.fullBanner,
