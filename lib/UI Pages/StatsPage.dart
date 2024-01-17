@@ -139,16 +139,16 @@ class _StatsPageState extends State<StatsPage> {
             },
           ),
         ),
-        // bottomNavigationBar: (_bannerAd == null)
-        //     ? Container(
-        //   color: Colors.white,
-        //   height: 60,
-        //   width: 470,)
-        //     : SizedBox(
-        //   height: 60,
-        //   width: 470,
-        //   child: AdWidget(ad: _bannerAd!),
-        // ),
+        bottomNavigationBar: (_bannerAd == null)
+            ? Container(
+          color: Colors.white,
+          height: 60,
+          width: 470,)
+            : SizedBox(
+          height: 60,
+          width: 470,
+          child: AdWidget(ad: _bannerAd!),
+        ),
       ),
     );
   }
@@ -173,10 +173,10 @@ class FootballStatsCard extends StatelessWidget {
 
     return Card(
       color: Color.fromRGBO(0, 0, 0, 0.5),
-      margin: EdgeInsets.all(16.0),
+      margin: EdgeInsets.all(10.0),
       child: Column(
         children: <Widget>[
-          Image.network(teamLogo),
+          Image.network(teamLogo,width: 120,height: 120,),
           ListTile(
             title: Text(
               '$teamName',

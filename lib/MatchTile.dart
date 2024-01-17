@@ -85,7 +85,7 @@ class _MatchTileState extends State<MatchTile> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                Image.network(widget.match.home.logoUrl, width: 36),
+                Image.network(widget.match.home.logoUrl, width: 36,height: 36,),
                 Flexible(
                   child: Expanded(
                     child: Padding(

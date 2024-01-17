@@ -13,10 +13,11 @@ class SoccerMatch {
     return SoccerMatch(
         Fixture.fromJson(json['fixture']),
         Status.fromJson(json['fixture']['status'] ?? {}), //from Status.fromJson(json['status']) to Status.fromJson(json['fixture']['status'])
-        Team.fromJson(json['teams']['home'], true), // Pass true for home team
-        Team.fromJson(json['teams']['away'], false), // Pass false for away team
-        // Team.fromJson(json['teams']['home']),
-        // Team.fromJson(json['teams']['away']),
+       //if team alternate is used
+        // Team.fromJson(json['teams']['home'], true), // Pass true for home team
+        // Team.fromJson(json['teams']['away'], false), // Pass false for away team
+        Team.fromJson(json['teams']['home']),
+        Team.fromJson(json['teams']['away']),
         Goal.fromJson(json['goals']??{}),
         Venue.fromJson(json['venue']??{})
     );
@@ -50,17 +51,18 @@ class Status {
   }
 }
 
-
+//////alternate
 class Team {
   int id;
   String name;
   String logoUrl;
   bool? winner; // ? null safety
   Team(this.id, this.name, this.logoUrl, this.winner);
-  factory Team.fromJson(Map<String, dynamic> json,bool isHome) {
+  // factory Team.fromJson(Map<String, dynamic> json,bool isHome) {
+  factory Team.fromJson(Map<String, dynamic> json) {
     return Team(json['id'], json['name'], json['logo'],
-        isHome ? json['winner'] : null, // Set winner only for home team
-        // json['winner']
+        // isHome ? json['winner'] : null, // Set winner only for home team
+        json['winner']
     );
   }
 }
