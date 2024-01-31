@@ -32,11 +32,28 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchReviewStatus().then((value) {
+  //     if (value){
+  //       Timer(
+  //         Duration(seconds: 5),
+  //             () => Navigator.pushReplacement(
+  //           context,
+  //           MaterialPageRoute(builder: (context) => MainScreen_3()),
+  //         ),
+  //       );
+  //     }
+  //   });
+  //
+  // }
+
   @override
   void initState() {
     super.initState();
-    fetchReviewStatus().then((value) {
-      if (value){
+
+
         Timer(
           Duration(seconds: 5),
               () => Navigator.pushReplacement(
@@ -44,8 +61,8 @@ class _SplashScreenState extends State<SplashScreen> {
             MaterialPageRoute(builder: (context) => MainScreen_3()),
           ),
         );
-      }
-    });
+
+
 
   }
 

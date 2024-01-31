@@ -8,6 +8,9 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-2314232719315576~1150386409"/>
 
+<!--        line added-->
+<!--        <uses-permission android:name="android.permission.INTERNET"/>-->
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

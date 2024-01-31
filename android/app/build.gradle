@@ -1,3 +1,5 @@
+
+
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -65,4 +67,7 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+//    line added below
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}

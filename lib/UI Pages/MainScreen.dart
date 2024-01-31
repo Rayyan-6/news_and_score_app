@@ -17,8 +17,6 @@ class MainScreen_3 extends StatefulWidget {
 }
 
 
-
-
 class _MainScreen_3State extends State<MainScreen_3> {
   InterstitialAd? _interstitialAd;
 
@@ -81,7 +79,6 @@ class _MainScreen_3State extends State<MainScreen_3> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.white,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/FBfield.jpg"),
@@ -95,7 +92,7 @@ class _MainScreen_3State extends State<MainScreen_3> {
           title: Text(
             "The Sports App",
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
@@ -152,7 +149,6 @@ class _MainScreen_3State extends State<MainScreen_3> {
 
 /////////
 Widget _buildCarouselItem(
-
     BuildContext context, String imagePath, int pageNumber) {
   InterstitialAd? _interstitialAd;
 
