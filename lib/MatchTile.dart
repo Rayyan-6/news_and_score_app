@@ -100,7 +100,7 @@ class _MatchTileState extends State<MatchTile> {
                     ),
                   ),
                 ),
-                Image.network(widget.match.away.logoUrl, width: 36),
+                Image.network(widget.match.away.logoUrl, width: 36,height: 36,),
                 Expanded(
                   child: Text(
                     widget.match.away.name,

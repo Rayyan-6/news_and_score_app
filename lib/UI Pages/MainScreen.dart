@@ -87,7 +87,6 @@ class _MainScreen_3State extends State<MainScreen_3> {
       ),
       child: Scaffold(
         appBar: AppBar(
-
           centerTitle: true,
           title: Text(
             "The Sports App",
@@ -145,8 +144,6 @@ class _MainScreen_3State extends State<MainScreen_3> {
   }
 }
 
-
-
 /////////
 Widget _buildCarouselItem(
     BuildContext context, String imagePath, int pageNumber) {
@@ -195,11 +192,11 @@ Widget _buildCarouselItem(
         MaterialPageRoute(builder: (context) => getHomePage(pageNumber)),
       );
     },
-    child: Positioned.fill(
-      child: Image.asset(
+    child: Image(
+      image: AssetImage(
         imagePath,
-        fit: BoxFit.cover,
       ),
+        fit: BoxFit.fill,
     ),
   );
 }

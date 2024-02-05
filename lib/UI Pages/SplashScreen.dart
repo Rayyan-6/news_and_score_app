@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:sem_project_new/UI%20Pages/FootballIntro.dart';
 
 import 'MainScreen.dart';
 import 'package:http/http.dart' as http;
@@ -59,6 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
               () => Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => MainScreen_3()),
+            // MaterialPageRoute(builder: (context) => FootballIntro()),
           ),
         );
 
